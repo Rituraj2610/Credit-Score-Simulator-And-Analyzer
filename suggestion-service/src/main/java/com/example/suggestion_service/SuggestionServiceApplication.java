@@ -1,13 +1,13 @@
-package com.example.demo;
+package com.example.suggestion_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class SuggestionServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(SuggestionServiceApplication.class, args);
 	}
 
 }

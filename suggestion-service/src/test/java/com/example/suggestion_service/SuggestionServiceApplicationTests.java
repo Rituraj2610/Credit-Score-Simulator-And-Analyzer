@@ -1,10 +1,10 @@
-package com.example.demo;
+package com.example.suggestion_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoApplicationTests {
+class SuggestionServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
