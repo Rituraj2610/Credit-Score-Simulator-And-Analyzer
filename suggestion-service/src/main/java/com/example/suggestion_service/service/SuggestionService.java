@@ -2,13 +2,11 @@ package com.example.suggestion_service.service;
 
 import com.example.suggestion_service.dto.SuggestionRequestAddDTO;
 import com.example.suggestion_service.dto.SuggestionResponseDTO;
-import com.example.suggestion_service.dto.SuggestionResponseFetchDTO;
 import com.example.suggestion_service.entity.Suggestion;
 import com.example.suggestion_service.repository.SuggestionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -30,7 +28,6 @@ public class SuggestionService {
         suggestion.setUserId(dto.getUserId());
         suggestion.setSuggestion(dto.getSuggestion());
         suggestion.setReason(dto.getReason());
-        suggestion.setCreatedOn(LocalDateTime.now());
 
         Suggestion saved = suggestionRepository.save(suggestion);
 
@@ -43,22 +40,22 @@ public class SuggestionService {
         return response;
     }
 
-    public SuggestionResponseFetchDTO getLatestSuggestion(UUID userId) {
+    public SuggestionResponseDTO getLatestSuggestion(UUID userId) {
         Suggestion suggestion = suggestionRepository.findTopByUserIdOrderByCreatedOnDesc(userId);
         if (suggestion == null) {
             throw new RuntimeException("No suggestions found for user");
         }
-        SuggestionResponseFetchDTO response = new SuggestionResponseFetchDTO();
+        SuggestionResponseDTO response = new SuggestionResponseDTO();
         response.setSuggestion(suggestion.getSuggestion());
         response.setReason(suggestion.getReason());
         response.setCreatedOn(suggestion.getCreatedOn());
         return response;
     }
 
-    public List<SuggestionResponseFetchDTO> getLast7Suggestions(UUID userId) {
+    public List<SuggestionResponseDTO> getLast7Suggestions(UUID userId) {
         List<Suggestion> suggestions = suggestionRepository.findTop7ByUserIdOrderByCreatedOnDesc(userId);
         return suggestions.stream().map(s -> {
-            SuggestionResponseFetchDTO dto = new SuggestionResponseFetchDTO();
+            SuggestionResponseDTO dto = new SuggestionResponseDTO();
 //            dto.setId(s.getId());
             dto.setSuggestion(s.getSuggestion());
             dto.setReason(s.getReason());
