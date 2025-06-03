@@ -1,10 +1,10 @@
-package com.example.demo;
+package com.rituraj.user_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoApplicationTests {
+class UserServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
